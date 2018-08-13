@@ -1,0 +1,17 @@
+C:\Users\EfrainMejiasC\Source\Repos\ApiRestConsumer\ApiRestConsumer\bin\Debug\ApiRestConsumer.exe.config
+C:\Users\EfrainMejiasC\Source\Repos\ApiRestConsumer\ApiRestConsumer\bin\Debug\ApiRestConsumer.exe
+C:\Users\EfrainMejiasC\Source\Repos\ApiRestConsumer\ApiRestConsumer\bin\Debug\ApiRestConsumer.pdb
+C:\Users\EfrainMejiasC\Source\Repos\ApiRestConsumer\ApiRestConsumer\bin\Debug\Echovoice.JSON.dll
+C:\Users\EfrainMejiasC\Source\Repos\ApiRestConsumer\ApiRestConsumer\bin\Debug\Json.dll
+C:\Users\EfrainMejiasC\Source\Repos\ApiRestConsumer\ApiRestConsumer\bin\Debug\Newtonsoft.Json.dll
+C:\Users\EfrainMejiasC\Source\Repos\ApiRestConsumer\ApiRestConsumer\bin\Debug\Echovoice.JSON.pdb
+C:\Users\EfrainMejiasC\Source\Repos\ApiRestConsumer\ApiRestConsumer\bin\Debug\Echovoice.JSON.xml
+C:\Users\EfrainMejiasC\Source\Repos\ApiRestConsumer\ApiRestConsumer\bin\Debug\Json.pdb
+C:\Users\EfrainMejiasC\Source\Repos\ApiRestConsumer\ApiRestConsumer\bin\Debug\Newtonsoft.Json.xml
+C:\Users\EfrainMejiasC\Source\Repos\ApiRestConsumer\ApiRestConsumer\obj\Debug\ApiRestConsumer.Form1.resources
+C:\Users\EfrainMejiasC\Source\Repos\ApiRestConsumer\ApiRestConsumer\obj\Debug\ApiRestConsumer.Properties.Resources.resources
+C:\Users\EfrainMejiasC\Source\Repos\ApiRestConsumer\ApiRestConsumer\obj\Debug\ApiRestConsumer.csproj.GenerateResource.Cache
+C:\Users\EfrainMejiasC\Source\Repos\ApiRestConsumer\ApiRestConsumer\obj\Debug\ApiRestConsumer.csproj.CoreCompileInputs.cache
+C:\Users\EfrainMejiasC\Source\Repos\ApiRestConsumer\ApiRestConsumer\obj\Debug\ApiRestConsumer.exe
+C:\Users\EfrainMejiasC\Source\Repos\ApiRestConsumer\ApiRestConsumer\obj\Debug\ApiRestConsumer.pdb
+C:\Users\EfrainMejiasC\Source\Repos\ApiRestConsumer\ApiRestConsumer\obj\Debug\ApiRestConsumer.csprojResolveAssemblyReference.cache
