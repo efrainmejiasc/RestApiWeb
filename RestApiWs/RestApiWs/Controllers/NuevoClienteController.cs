@@ -36,7 +36,6 @@ namespace RestApiWs.Controllers
                 return response;
             }
 
-            Customer.Id = Engine.FuncionesApi.IdentificadorReg().ToString();
             int resultado = Engine.FuncionesDb.InsertarClienteAll(Customer.Id, Customer.Nombre, Customer.Edad,
                                                Customer.Telefono, Customer.Mail, Customer.Saldo,
                                                Customer.FechaCreacion, Customer.FechaCreacionUtc,
