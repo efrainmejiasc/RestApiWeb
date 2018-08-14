@@ -103,7 +103,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Cliente.cs" />
-    <Compile Include="Models\ExceptionDef.cs" />
     <Compile Include="Models\NuevoCliente.cs" />
     <Compile Include="Models\SyncIn.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
