@@ -1,5 +1,6 @@
 ﻿using Echovoice.JSON;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -66,9 +67,8 @@ namespace ApiRestConsumer
                 }
 
                 var resulta = resultado;
-                List<Cliente2> json = JsonConvert.DeserializeObject<List<Cliente2>>(resulta);
+                List<Cliente> json = JsonConvert.DeserializeObject<List<Cliente>>(resulta);
                 //string k = Convert.ToDateTime (json[0].FechaCreacionUtc).ToString("yyyy-MM-ddTHH:mm:ss+hh:mm");
-
                 //int n = 0;
             }
             else
@@ -127,12 +127,8 @@ namespace ApiRestConsumer
 
         }
 
-        class Wrapper
-        {
-            [JsonProperty("JsonValues")]
-            public Cliente Cliente { get; set; }
-        }
 
+        [JsonObject(MemberSerialization.OptIn)]
         public class Cliente
         {
             [JsonProperty("Numero")]
@@ -156,16 +152,16 @@ namespace ApiRestConsumer
             [JsonProperty("Saldo")]
             public double Saldo { get; set; }
 
-            [JsonProperty("FechaCreacion")]
+            [JsonConverter(typeof(MicrosecondEpochConverter))]
             public DateTime FechaCreacion { get; set; }
 
-            [JsonProperty("FechaCreacionUtc")]
+            [JsonConverter(typeof(MicrosecondEpochConverter))]
             public DateTime FechaCreacionUtc { get; set; }
 
-            [JsonProperty("FechaModificacion")]
+            [JsonConverter(typeof(MicrosecondEpochConverter))]
             public DateTime FechaModificacion { get; set; }
 
-            [JsonProperty("FechaModificacionUtc")]
+            [JsonConverter(typeof(MicrosecondEpochConverter))]
             public DateTime FechaModificacionUtc { get; set; }
 
             [JsonProperty("Proceso")]
@@ -180,44 +176,20 @@ namespace ApiRestConsumer
         }
 
 
-        public class Cliente2
+        public class MicrosecondEpochConverter : DateTimeConverterBase
         {
-            public string Numero { get; set; }
+            private static readonly DateTime _epoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
 
-            public string Id { get; set; }
+            public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+            {
+                writer.WriteRawValue(((DateTime)value - _epoch).TotalMilliseconds + "000");
+            }
 
-            public string Nombre { get; set; }
-
-            public string  Edad { get; set; }
-
-            public string Telefono { get; set; }
-
-            public string Mail { get; set; }
-
-            public double Saldo { get; set; }
-
-            public string FechaCreacion { get; set; }
-
-            public string FechaCreacionUtc { get; set; }
-
-            public string FechaModificacion { get; set; }
-
-            public string FechaModificacionUtc { get; set; }
-
-            public string Proceso { get; set; }
-
-            public string Usuario { get; set; }
-
-            public string Estado { get; set; }
-
-        }
-
-        public class ExceptionDef
-        {
-            public string Error { get; set; }
-
-            public string CasoUso { get; set; }
-
+            public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+            {
+                if (reader.Value == null) { return null; }
+                return _epoch.AddMilliseconds((long)reader.Value / 1000d);
+            }
         }
 
         private void btnPut_Click(object sender, EventArgs e)

@@ -322,117 +322,27 @@ namespace RestApiWs.Engine
 
         //***********************************************************************************************************************************************************************
 
-        [System.Web.Services.WebMethod]
-        public static int InsertarCliente(string Id, string Nombre, int Edad, string Telefono, string Mail, double Saldo, DateTime FechaCreacion, DateTime FechaCreacionUtc, DateTime FechaModificacion, DateTime FechaModificacionUtc, int Proceso, string Usuario, string Estado)
+        public string Listado( string campo1 , string campo2)
         {
-            int resultado = new int();
             SqlConnection Conexion = new SqlConnection(cadenaConexion);
             using (Conexion)
             {
                 Conexion.Open();
-                SqlCommand command = new SqlCommand("Sp_InsertarCliente", Conexion);
+                SqlCommand command = new SqlCommand("Sp_BorrarCliente", Conexion);
                 command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("@Id", Id);
-                command.Parameters.AddWithValue("@Nombre", Nombre);
-                command.Parameters.AddWithValue("@Edad", Edad);
-                command.Parameters.AddWithValue("@Telefono", Telefono);
-                command.Parameters.AddWithValue("@Mail", Mail);
-                command.Parameters.AddWithValue("@Saldo", Saldo);
-                command.Parameters.AddWithValue("@FechaCreacion", FechaCreacion);
-                command.Parameters.AddWithValue("@FechaCreacionUtc", FechaCreacionUtc);
-                command.Parameters.AddWithValue("@FechaModificacion", FechaModificacion);
-                command.Parameters.AddWithValue("@FechaModificacionUtc", FechaModificacionUtc);
-                command.Parameters.AddWithValue("@Proceso", Proceso);
-                command.Parameters.AddWithValue("@Usuario", Usuario);
-                command.Parameters.AddWithValue("@Estado", Estado);
-                resultado = command.ExecuteNonQuery();
+                command.Parameters.Clear();
+                SqlDataReader lector = lector = command.ExecuteReader();
+                while ((lector.Read()))
+                {
+                    campo1 = lector[campo1].ToString();
+                    campo2 = lector[campo2].ToString();
+                }
+                lector.Close();
+                command.Connection.Close();
                 Conexion.Close();
             }
-
-            return resultado;
+            return campo1 + campo2;
         }
-
-        [System.Web.Services.WebMethod]
-        public static int InsertarClienteTrack(string Id, string Nombre, int Edad, string Telefono, string Mail, double Saldo, DateTime FechaCreacion, DateTime FechaCreacionUtc, DateTime FechaModificacion, DateTime FechaModificacionUtc, int Proceso, string Usuario, string Estado, string Insertar)
-        {
-            int resultado = new int();
-            SqlConnection Conexion = new SqlConnection(cadenaConexion);
-            using (Conexion)
-            {
-                Conexion.Open();
-                SqlCommand command = new SqlCommand("Sp_InsertarClienteTrack", Conexion);
-                command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("@Id", Id);
-                command.Parameters.AddWithValue("@Nombre", Nombre);
-                command.Parameters.AddWithValue("@Edad", Edad);
-                command.Parameters.AddWithValue("@Telefono", Telefono);
-                command.Parameters.AddWithValue("@Mail", Mail);
-                command.Parameters.AddWithValue("@Saldo", Saldo);
-                command.Parameters.AddWithValue("@FechaCreacion", FechaCreacion);
-                command.Parameters.AddWithValue("@FechaCreacionUtc", FechaCreacionUtc);
-                command.Parameters.AddWithValue("@FechaModificacion", FechaModificacion);
-                command.Parameters.AddWithValue("@FechaModificacionUtc", FechaModificacionUtc);
-                command.Parameters.AddWithValue("@Proceso", Proceso);
-                command.Parameters.AddWithValue("@Usuario", Usuario);
-                command.Parameters.AddWithValue("@Estado", Estado);
-                command.Parameters.AddWithValue("@Transaccion", Insertar);
-                resultado = command.ExecuteNonQuery();
-                Conexion.Close();
-            }
-
-            return resultado;
-        }
-
-        [System.Web.Services.WebMethod]
-        public static int ActualizarCliente(string Id, string Nombre, int Edad, string Telefono, string Mail, double Saldo, DateTime FechaModificacion, DateTime FechaModificacionUtc, string Usuario, string Estado)
-        {
-            int resultado = new int();
-            SqlConnection Conexion = new SqlConnection(cadenaConexion);
-            using (Conexion)
-            {
-                Conexion.Open();
-                SqlCommand command = new SqlCommand("Sp_ActualizarCliente", Conexion);
-                command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("@Id", Id);
-                command.Parameters.AddWithValue("@Nombre", Nombre);
-                command.Parameters.AddWithValue("@Edad", Edad);
-                command.Parameters.AddWithValue("@Telefono", Telefono);
-                command.Parameters.AddWithValue("@Mail", Mail);
-                command.Parameters.AddWithValue("@Saldo", Saldo);
-                command.Parameters.AddWithValue("@FechaModificacion", FechaModificacion);
-                command.Parameters.AddWithValue("@FechaModificacionUtc", FechaModificacionUtc);
-                command.Parameters.AddWithValue("@Usuario", Usuario);
-                command.Parameters.AddWithValue("@Estado", Estado);
-                resultado = command.ExecuteNonQuery();
-                Conexion.Close();
-            }
-
-            return resultado;
-        }
-
-        [System.Web.Services.WebMethod]
-        public static int ActualizarClienteEstado(string Id, DateTime FechaModificacion, DateTime FechaModificacionUtc, string Usuario, string Estado)
-        {
-            int resultado = new int();
-            SqlConnection Conexion = new SqlConnection(cadenaConexion);
-            using (Conexion)
-            {
-                Conexion.Open();
-                SqlCommand command = new SqlCommand("Sp_ActualizarClienteEstado", Conexion);
-                command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("@Id", Id);
-                command.Parameters.AddWithValue("@FechaModificacion", FechaModificacion);
-                command.Parameters.AddWithValue("@FechaModificacionUtc", FechaModificacionUtc);
-                command.Parameters.AddWithValue("@Usuario", Usuario);
-                command.Parameters.AddWithValue("@Estado", Estado);
-                resultado = command.ExecuteNonQuery();
-                Conexion.Close();
-            }
-
-            return resultado;
-        }
-
-
 
     }
 }

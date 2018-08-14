@@ -89,6 +89,7 @@
     <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\EliminarClienteController.cs" />
     <Compile Include="Controllers\NuevoClienteController.cs" />
+    <Compile Include="Controllers\SyncInController.cs" />
     <Compile Include="default.aspx.cs">
       <DependentUpon>default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -104,6 +105,7 @@
     <Compile Include="Models\Cliente.cs" />
     <Compile Include="Models\ExceptionDef.cs" />
     <Compile Include="Models\NuevoCliente.cs" />
+    <Compile Include="Models\SyncIn.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

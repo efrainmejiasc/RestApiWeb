@@ -17,6 +17,7 @@ namespace RestApiWs.Controllers
             {
                 throw new ArgumentNullException();
             }
+
             string existeNumero= Engine.FuncionesDb.SelectNumeroClienteId(Customer.Id,"ACTIVO");
             if (existeNumero == string.Empty)
             {
