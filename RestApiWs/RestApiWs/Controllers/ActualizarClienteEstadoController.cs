@@ -35,11 +35,10 @@ namespace RestApiWs.Controllers
                                               row["Telefono"].ToString(), row["Mail"].ToString(), Convert.ToDouble(row["Saldo"]),
                                               Convert.ToDateTime(row["FechaCreacion"]), Convert.ToDateTime(row["FechaCreacionUtc"]),
                                               Customer.FechaModificacion, Customer.FechaModificacionUtc,
-                                              proceso, Customer.Usuario, Customer.Estado.ToUpper(), "ACTUALIZAR_ESTADO");
+                                              proceso, Customer.Usuario, Customer.Estado.ToUpper(), Customer.Transaccion);
             if (resultado == -1)
             {
                 var response = Request.CreateResponse<Cliente>(HttpStatusCode.Created, Customer);
-                //string uri = Url.Link("DefaultApi", new { id = Customer.Id });
                 response.Headers.Location = new Uri("http://efrain1234-001-site1.ftempurl.com/api/Cliente/" + Customer.Id.ToString());
                 response.Headers.Add("Mensaje", "Actualizacion Exitosa");
                 return response;

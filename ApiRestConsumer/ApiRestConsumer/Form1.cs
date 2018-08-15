@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -69,7 +70,6 @@ namespace ApiRestConsumer
                 var resulta = resultado;
                 List<Cliente> json = JsonConvert.DeserializeObject<List<Cliente>>(resulta);
                 //string k = Convert.ToDateTime (json[0].FechaCreacionUtc).ToString("yyyy-MM-ddTHH:mm:ss+hh:mm");
-                //int n = 0;
             }
             else
             {
@@ -98,7 +98,8 @@ namespace ApiRestConsumer
                 FechaModificacionUtc = DateTime.UtcNow,
                 Proceso = 0,
                 Usuario = txtUsuario.Text,
-                Estado = "ACTIVO"
+                Estado = "ACTIVO",
+                Transaccion="INSERTAR"
 
             };
             var jsonCliente = JsonConvert.SerializeObject(Customer);
@@ -127,8 +128,12 @@ namespace ApiRestConsumer
 
         }
 
+        class Wrapper
+        {
+            [JsonProperty("JsonValues")]
+            public Cliente Cliente { get; set; }
+        }
 
-        [JsonObject(MemberSerialization.OptIn)]
         public class Cliente
         {
             [JsonProperty("Numero")]
@@ -152,16 +157,16 @@ namespace ApiRestConsumer
             [JsonProperty("Saldo")]
             public double Saldo { get; set; }
 
-            [JsonConverter(typeof(MicrosecondEpochConverter))]
+            [JsonConverter(typeof(CustomDateTimeConverter))]
             public DateTime FechaCreacion { get; set; }
 
-            [JsonConverter(typeof(MicrosecondEpochConverter))]
+            [JsonConverter(typeof(CustomDateTimeConverter))]
             public DateTime FechaCreacionUtc { get; set; }
 
-            [JsonConverter(typeof(MicrosecondEpochConverter))]
+            [JsonConverter(typeof(CustomDateTimeConverter))]
             public DateTime FechaModificacion { get; set; }
 
-            [JsonConverter(typeof(MicrosecondEpochConverter))]
+            [JsonConverter(typeof(CustomDateTimeConverter))]
             public DateTime FechaModificacionUtc { get; set; }
 
             [JsonProperty("Proceso")]
@@ -173,23 +178,96 @@ namespace ApiRestConsumer
             [JsonProperty("Estado")]
             public string Estado { get; set; }
 
+            [JsonProperty("Transaccion")]
+            public string Transaccion{ get; set; }
+
         }
 
 
-        public class MicrosecondEpochConverter : DateTimeConverterBase
+        public class Cliente2
         {
-            private static readonly DateTime _epoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+            public string Numero { get; set; }
 
+            public string Id { get; set; }
+
+            public string Nombre { get; set; }
+
+            public string  Edad { get; set; }
+
+            public string Telefono { get; set; }
+
+            public string Mail { get; set; }
+
+            public double Saldo { get; set; }
+
+            public string FechaCreacion { get; set; }
+
+            public string FechaCreacionUtc { get; set; }
+
+            public string FechaModificacion { get; set; }
+
+            public string FechaModificacionUtc { get; set; }
+
+            public string Proceso { get; set; }
+
+            public string Usuario { get; set; }
+
+            public string Estado { get; set; }
+
+            public string Transaccion { get; set; }
+
+        }
+
+        public class CustomDateTimeConverter : DateTimeConverterBase
+        {
+            /// <summary>
+            /// DateTime format
+            /// </summary>
+            private const string Format = "dd. MM. yyyy HH:mm";
+
+            /// <summary>
+            /// Writes value to JSON
+            /// </summary>
+            /// <param name="writer">JSON writer</param>
+            /// <param name="value">Value to be written</param>
+            /// <param name="serializer">JSON serializer</param>
             public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
             {
-                writer.WriteRawValue(((DateTime)value - _epoch).TotalMilliseconds + "000");
+                writer.WriteValue(((DateTime)value).ToString(Format));
             }
 
+            /// <summary>
+            /// Reads value from JSON
+            /// </summary>
+            /// <param name="reader">JSON reader</param>
+            /// <param name="objectType">Target type</param>
+            /// <param name="existingValue">Existing value</param>
+            /// <param name="serializer">JSON serialized</param>
+            /// <returns>Deserialized DateTime</returns>
             public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
             {
-                if (reader.Value == null) { return null; }
-                return _epoch.AddMilliseconds((long)reader.Value / 1000d);
+                if (reader.Value == null)
+                {
+                    return null;
+                }
+
+                var s = reader.Value.ToString();
+                DateTime result;
+                if (DateTime.TryParseExact(s, Format, CultureInfo.InvariantCulture, DateTimeStyles.None, out result))
+                {
+                    return result;
+                }
+
+                return DateTime.Now;
             }
+        }
+
+        public class ExceptionDef
+        {
+            public string Error { get; set; }
+
+            public string CasoUso { get; set; }
+
         }
 
         private void btnPut_Click(object sender, EventArgs e)
@@ -207,7 +285,8 @@ namespace ApiRestConsumer
                 FechaModificacionUtc = DateTime.UtcNow,
                 Proceso = 0,
                 Usuario = txtUsuario2.Text,
-                Estado = txtEstado.Text
+                Estado = txtEstado.Text,
+                Transaccion = "ACTUALIZAR"
             };
 
             var jsonCliente = JsonConvert.SerializeObject(Customer);
@@ -273,7 +352,8 @@ namespace ApiRestConsumer
                 FechaModificacionUtc = DateTime.UtcNow,
                 Proceso = 0,
                 Usuario = txtUsuario3.Text,
-                Estado = txtEstado2.Text
+                Estado = txtEstado2.Text,
+                Transaccion = "ACTUALIZAR_ESTADO"
             };
 
             var jsonCliente = JsonConvert.SerializeObject(Customer);

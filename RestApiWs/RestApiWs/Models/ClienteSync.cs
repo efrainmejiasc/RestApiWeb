@@ -5,7 +5,7 @@ using System.Web;
 
 namespace RestApiWs.Models
 {
-    public class NuevoCliente
+    public class ClienteSync
     {
         public int Numero { get; set; }
 
@@ -34,5 +34,8 @@ namespace RestApiWs.Models
         public string Usuario { get; set; }
 
         public string Estado { get; set; }
+
+        public string Transaccion { get; set; }
+
     }
 }

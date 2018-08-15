@@ -7,8 +7,8 @@ namespace RestApiWs.Models
 {
     public class SyncIn
     {
-       string Id { get; set; }
-       string Resultado { get; set; }
-       string Error { get; set; }
+       public string Id { get; set; }
+       public bool Resultado { get; set; }
+       public int  Error { get; set; }
     }
 }

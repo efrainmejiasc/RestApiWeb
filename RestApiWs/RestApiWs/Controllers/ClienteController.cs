@@ -16,25 +16,18 @@ namespace RestApiWs.Controllers
     {
         public string  GetCliente()
         {
-            string resultado = string.Empty;
+            string  resultado = string.Empty;
             DataTable dt = new DataTable();
             dt = Engine.FuncionesDb.TableDataCliente();
             List<Cliente> Customer = new List<Cliente>();
             if (dt.Rows.Count == 0)
             {
-                return resultado;
+                return resultado ;
             }
             else
             {
              Customer = SetListaCliente(dt);
              resultado = new JavaScriptSerializer().Serialize(Customer);
-                 /*resultado = resultado.Replace("/", "");
-                 resultado = resultado.Replace("\\", "");
-                 resultado = resultado.Replace("[", "");
-                 resultado = resultado.Replace("]", "");
-                 resultado = resultado.Replace('"', ' ');
-                 resultado = resultado.Replace("{", "");
-                 resultado = resultado.Replace("}", "");*/
             }
 
             return resultado;

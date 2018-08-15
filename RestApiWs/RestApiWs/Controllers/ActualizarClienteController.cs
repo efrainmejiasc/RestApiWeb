@@ -33,7 +33,7 @@ namespace RestApiWs.Controllers
                                                Customer.Telefono, Customer.Mail, Customer.Saldo,
                                                Engine.FuncionesDb.SelectClienteFechaCreacion(Customer.Id), Engine.FuncionesDb.SelectClienteFechaCreacionUtc(Customer.Id),
                                                Customer.FechaModificacion, Customer.FechaModificacionUtc,
-                                               proceso,Customer.Usuario, Customer.Estado.ToUpper(),"ACTUALIZAR");
+                                               proceso,Customer.Usuario, Customer.Estado.ToUpper(),Customer.Transaccion);
             if (resultado == -1)
             {
                 var response = Request.CreateResponse<Cliente>(HttpStatusCode.Created, Customer);
