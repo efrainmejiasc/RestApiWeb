@@ -75,6 +75,7 @@
             this.txtUsuario3 = new System.Windows.Forms.TextBox();
             this.txtEstado2 = new System.Windows.Forms.TextBox();
             this.label23 = new System.Windows.Forms.Label();
+            this.btnJsonSend = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // richTextBox1
@@ -87,7 +88,7 @@
             // 
             // btnPost
             // 
-            this.btnPost.Location = new System.Drawing.Point(79, 538);
+            this.btnPost.Location = new System.Drawing.Point(79, 541);
             this.btnPost.Name = "btnPost";
             this.btnPost.Size = new System.Drawing.Size(202, 36);
             this.btnPost.TabIndex = 8;
@@ -470,11 +471,22 @@
             this.label23.TabIndex = 46;
             this.label23.Text = "Estado = { ACTIVO , INACTIVO, ELIMINADO }";
             // 
+            // btnJsonSend
+            // 
+            this.btnJsonSend.Location = new System.Drawing.Point(79, 611);
+            this.btnJsonSend.Name = "btnJsonSend";
+            this.btnJsonSend.Size = new System.Drawing.Size(202, 36);
+            this.btnJsonSend.TabIndex = 47;
+            this.btnJsonSend.Text = "POST_JSON";
+            this.btnJsonSend.UseVisualStyleBackColor = true;
+            this.btnJsonSend.Click += new System.EventHandler(this.btnJsonSend_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(987, 673);
+            this.Controls.Add(this.btnJsonSend);
             this.Controls.Add(this.label23);
             this.Controls.Add(this.txtEstado2);
             this.Controls.Add(this.label21);
@@ -580,6 +592,7 @@
         private System.Windows.Forms.TextBox txtUsuario3;
         private System.Windows.Forms.TextBox txtEstado2;
         private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Button btnJsonSend;
     }
 }
 

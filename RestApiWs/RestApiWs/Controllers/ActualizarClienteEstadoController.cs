@@ -33,7 +33,7 @@ namespace RestApiWs.Controllers
             int proceso = 0;
             int resultado = Engine.FuncionesDb.ActualizarClienteEstadoAll(Customer.Id, row["Nombre"].ToString(), Convert.ToInt32(row["Edad"]),
                                               row["Telefono"].ToString(), row["Mail"].ToString(), Convert.ToDouble(row["Saldo"]),
-                                              Convert.ToDateTime(row["FechaCreacion"]), Convert.ToDateTime(row["FechaCreacionUtc"]),
+                                              Convert.ToDateTime(row["FechaCreacion"]), row["FechaCreacionUtc"].ToString(),
                                               Customer.FechaModificacion, Customer.FechaModificacionUtc,
                                               proceso, Customer.Usuario, Customer.Estado.ToUpper(), Customer.Transaccion);
             if (resultado == -1)

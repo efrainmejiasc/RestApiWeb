@@ -9,8 +9,7 @@ using System.Web;
 namespace RestApiWs.Models
 {
     public class Cliente
-    {
-       
+    {      
             [JsonProperty("Numero")]
             public int Numero { get; set; }
 
@@ -35,14 +34,14 @@ namespace RestApiWs.Models
             [JsonConverter(typeof(CustomDateTimeConverter))]
             public DateTime FechaCreacion { get; set; }
 
-            [JsonConverter(typeof(CustomDateTimeConverter))]
-            public DateTime FechaCreacionUtc { get; set; }
+            [JsonProperty("FechaCreacionUtc")]
+            public string FechaCreacionUtc { get; set; }
 
             [JsonConverter(typeof(CustomDateTimeConverter))]
             public DateTime FechaModificacion { get; set; }
 
-            [JsonConverter(typeof(CustomDateTimeConverter))]
-            public DateTime FechaModificacionUtc { get; set; }
+            [JsonProperty("FechaModificacionUtc")]   
+            public string FechaModificacionUtc { get; set; }
 
             [JsonProperty("Proceso")]
             public int Proceso { get; set; }

@@ -5,7 +5,9 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
@@ -20,6 +22,8 @@ namespace ApiRestConsumer
 {
     public partial class Form1 : Form
     {
+        private string cadenaConexion = ConfigurationManager.ConnectionStrings["CnxRestSync"].ToString();
+
         public Form1()
         {
             InitializeComponent();
@@ -69,7 +73,6 @@ namespace ApiRestConsumer
 
                 var resulta = resultado;
                 List<Cliente> json = JsonConvert.DeserializeObject<List<Cliente>>(resulta);
-                //string k = Convert.ToDateTime (json[0].FechaCreacionUtc).ToString("yyyy-MM-ddTHH:mm:ss+hh:mm");
             }
             else
             {
@@ -93,9 +96,9 @@ namespace ApiRestConsumer
                 Mail = txtEmail.Text,
                 Saldo = Convert.ToDouble(txtSaldo.Text),
                 FechaCreacion = DateTime.Now,
-                FechaCreacionUtc = DateTime.UtcNow,
+                FechaCreacionUtc = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss+hh:mm"),
                 FechaModificacion = DateTime.Now,
-                FechaModificacionUtc = DateTime.UtcNow,
+                FechaModificacionUtc = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss+hh:mm"),
                 Proceso = 0,
                 Usuario = txtUsuario.Text,
                 Estado = "ACTIVO",
@@ -128,14 +131,9 @@ namespace ApiRestConsumer
 
         }
 
-        class Wrapper
-        {
-            [JsonProperty("JsonValues")]
-            public Cliente Cliente { get; set; }
-        }
-
         public class Cliente
         {
+
             [JsonProperty("Numero")]
             public int Numero { get; set; }
 
@@ -160,14 +158,14 @@ namespace ApiRestConsumer
             [JsonConverter(typeof(CustomDateTimeConverter))]
             public DateTime FechaCreacion { get; set; }
 
-            [JsonConverter(typeof(CustomDateTimeConverter))]
-            public DateTime FechaCreacionUtc { get; set; }
+            [JsonProperty("FechaCreacionUtc")]
+            public string FechaCreacionUtc { get; set; }
 
             [JsonConverter(typeof(CustomDateTimeConverter))]
             public DateTime FechaModificacion { get; set; }
 
-            [JsonConverter(typeof(CustomDateTimeConverter))]
-            public DateTime FechaModificacionUtc { get; set; }
+            [JsonProperty("FechaModificacionUtc")]
+            public string FechaModificacionUtc { get; set; }
 
             [JsonProperty("Proceso")]
             public int Proceso { get; set; }
@@ -179,71 +177,22 @@ namespace ApiRestConsumer
             public string Estado { get; set; }
 
             [JsonProperty("Transaccion")]
-            public string Transaccion{ get; set; }
-
-        }
-
-
-        public class Cliente2
-        {
-            public string Numero { get; set; }
-
-            public string Id { get; set; }
-
-            public string Nombre { get; set; }
-
-            public string  Edad { get; set; }
-
-            public string Telefono { get; set; }
-
-            public string Mail { get; set; }
-
-            public double Saldo { get; set; }
-
-            public string FechaCreacion { get; set; }
-
-            public string FechaCreacionUtc { get; set; }
-
-            public string FechaModificacion { get; set; }
-
-            public string FechaModificacionUtc { get; set; }
-
-            public string Proceso { get; set; }
-
-            public string Usuario { get; set; }
-
-            public string Estado { get; set; }
-
             public string Transaccion { get; set; }
-
         }
 
-        public class CustomDateTimeConverter : DateTimeConverterBase
+
+
+            public class CustomDateTimeConverter : DateTimeConverterBase
         {
-            /// <summary>
-            /// DateTime format
-            /// </summary>
+            
             private const string Format = "dd. MM. yyyy HH:mm";
 
-            /// <summary>
-            /// Writes value to JSON
-            /// </summary>
-            /// <param name="writer">JSON writer</param>
-            /// <param name="value">Value to be written</param>
-            /// <param name="serializer">JSON serializer</param>
             public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
             {
                 writer.WriteValue(((DateTime)value).ToString(Format));
             }
 
-            /// <summary>
-            /// Reads value from JSON
-            /// </summary>
-            /// <param name="reader">JSON reader</param>
-            /// <param name="objectType">Target type</param>
-            /// <param name="existingValue">Existing value</param>
-            /// <param name="serializer">JSON serialized</param>
-            /// <returns>Deserialized DateTime</returns>
+      
             public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
             {
                 if (reader.Value == null)
@@ -262,13 +211,6 @@ namespace ApiRestConsumer
             }
         }
 
-        public class ExceptionDef
-        {
-            public string Error { get; set; }
-
-            public string CasoUso { get; set; }
-
-        }
 
         private void btnPut_Click(object sender, EventArgs e)
         {
@@ -282,7 +224,7 @@ namespace ApiRestConsumer
                 Mail = txtEmail2.Text,
                 Saldo = Convert.ToDouble(txtSaldo2.Text),
                 FechaModificacion = DateTime.Now,
-                FechaModificacionUtc = DateTime.UtcNow,
+                FechaModificacionUtc = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss+hh:mm"),
                 Proceso = 0,
                 Usuario = txtUsuario2.Text,
                 Estado = txtEstado.Text,
@@ -349,7 +291,7 @@ namespace ApiRestConsumer
                 Numero = 0,
                 Id = txtId2.Text,
                 FechaModificacion = DateTime.Now,
-                FechaModificacionUtc = DateTime.UtcNow,
+                FechaModificacionUtc = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss+hh:mm"),
                 Proceso = 0,
                 Usuario = txtUsuario3.Text,
                 Estado = txtEstado2.Text,
@@ -381,5 +323,102 @@ namespace ApiRestConsumer
             }
 
         }
+
+
+
+        private void btnJsonSend_Click(object sender, EventArgs e)
+        {
+           string json = SetListaCliente();
+           EnviarDocumentoPost2(json);
+        }
+
+        public string SetListaCliente()
+        {
+           List<Cliente> Customer = new List<Cliente>();
+           Cliente lineaCliente = new Cliente
+           {
+                Numero = 0,
+                Id = "C0A2D3F2-8530-47BB-B833-000BA4FB1B7B",
+                Nombre = "EFRAIN MEJIAS",
+                Edad = 46,
+                Telefono = "0424-4133677",
+                Mail = "efrainmejiasc@gmail.com",
+                Saldo = 20000000.678,
+                FechaCreacion = DateTime.Now,
+                FechaCreacionUtc = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss+hh:mm"),
+                FechaModificacion = DateTime.Now,
+                FechaModificacionUtc = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss+hh:mm"),
+                Proceso = 0,
+                Usuario = "EFRAIN",
+                Estado = "ACTIVO",
+                Transaccion= "INSERTAR",
+           };
+            Customer.Insert (0,lineaCliente);
+            lineaCliente = new Cliente
+            {
+                Numero = 0,
+                Id = "866B3180-C080-4CD9-BA19-DE5E983DE9D5",
+                Nombre = "JUAN MEJIAS",
+                Edad = 42,
+                Telefono = "0424-4133677",
+                Mail = "Juan@gmail.com",
+                Saldo = 3000,
+                FechaCreacion = DateTime.Now,
+                FechaCreacionUtc = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss+hh:mm"),
+                FechaModificacion = DateTime.Now,
+                FechaModificacionUtc = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss+hh:mm"),
+                Proceso = 0,
+                Usuario = "EFRAIN",
+                Estado = "ACTIVO",
+                Transaccion = "INSERTAR",
+            };
+            Customer.Insert(1, lineaCliente);
+            lineaCliente = new Cliente
+            {
+                Numero = 0,
+                Id = "33125839-A192-4BB6-A0D0-5C022AAFC02F",
+                Nombre = "ROGER MEJIAS",
+                Edad = 32,
+                Telefono = "0424-4133677",
+                Mail = "JuanCarlos@gmail.com",
+                Saldo = 1000000,
+                FechaCreacion = DateTime.Now,
+                FechaCreacionUtc = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss+hh:mm"),
+                FechaModificacion = DateTime.Now,
+                FechaModificacionUtc = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss+hh:mm"),
+                Proceso = 0,
+                Usuario = "EFRAIN",
+                Estado = "INACTIVO",
+                Transaccion = "INSERTAR",
+            };
+            Customer.Insert(2, lineaCliente);
+
+            var jsonCliente = JsonConvert.SerializeObject(Customer);
+            return jsonCliente;
+        }
+
+        public async void EnviarDocumentoPost2(string json)
+        {
+            string urlValidacion = string.Empty;
+            HttpClient client = new HttpClient();
+            client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            //HttpResponseMessage response = await client.PostAsync("http://localhost:50445/api/SyncIn/", new StringContent(json, Encoding.UTF8, "application/json"));
+            HttpResponseMessage response = await client.PostAsync("http://efrain1234-001-site1.ftempurl.com/api/SyncIn/", new StringContent(json, Encoding.UTF8, "application/json"));
+            if (response.IsSuccessStatusCode)
+            {
+                urlValidacion = response.Headers.Location.ToString();
+                string  jsonValidacion = response.Content.ReadAsStringAsync().Result;
+                richTextBox1.Text = urlValidacion;
+            }
+            else
+            {
+                urlValidacion = response.IsSuccessStatusCode.ToString();
+                string jsonValidacion = response.Content.ReadAsStringAsync().Result;
+                richTextBox1.Text = urlValidacion;
+            }
+
+        }
+
     }
 }

@@ -104,10 +104,10 @@ namespace RestApiWs.Engine
         }
 
         [System.Web.Services.WebMethod]
-        public static DateTime SelectClienteFechaCreacionUtc(string Id)
+        public static string SelectClienteFechaCreacionUtc(string Id)
         {
             object obj = new object();
-            DateTime resultado = new DateTime();
+            string resultado = string.Empty;
             SqlConnection Conexion = new SqlConnection(cadenaConexion);
             using (Conexion)
             {
@@ -120,7 +120,7 @@ namespace RestApiWs.Engine
             }
             if (obj != null)
             {
-                resultado = Convert.ToDateTime(obj);
+                resultado = obj.ToString();
             }
             return resultado;
         }
@@ -172,7 +172,7 @@ namespace RestApiWs.Engine
 
       
         [System.Web.Services.WebMethod]
-        public static int InsertarClienteAll(string Id, string Nombre, int Edad, string Telefono, string Mail, double Saldo, DateTime FechaCreacion, DateTime FechaCreacionUtc, DateTime FechaModificacion, DateTime FechaModificacionUtc, int Proceso, string Usuario, string Estado, string Insertar)
+        public static int InsertarClienteAll(string Id, string Nombre, int Edad, string Telefono, string Mail, double Saldo, DateTime FechaCreacion, string FechaCreacionUtc, DateTime FechaModificacion, string FechaModificacionUtc, int Proceso, string Usuario, string Estado, string Insertar)
         {
             int resultado = new int();
             SqlConnection Conexion = new SqlConnection(cadenaConexion);
@@ -203,7 +203,7 @@ namespace RestApiWs.Engine
         }
      
         [System.Web.Services.WebMethod]
-        public static int ActualizarClienteAll(string Id, string Nombre, int Edad, string Telefono, string Mail, double Saldo, DateTime FechaCreacion, DateTime FechaCreacionUtc, DateTime FechaModificacion, DateTime FechaModificacionUtc, int Proceso, string Usuario, string Estado, string Insertar)
+        public static int ActualizarClienteAll(string Id, string Nombre, int Edad, string Telefono, string Mail, double Saldo, DateTime FechaCreacion, string FechaCreacionUtc, DateTime FechaModificacion, string FechaModificacionUtc, int Proceso, string Usuario, string Estado, string Insertar)
         {
             int resultado = new int();
             SqlConnection Conexion = new SqlConnection(cadenaConexion);
@@ -234,7 +234,7 @@ namespace RestApiWs.Engine
         }
 
         [System.Web.Services.WebMethod]
-        public static int ActualizarClienteEstadoAll(string Id, string Nombre, int Edad, string Telefono, string Mail, double Saldo, DateTime FechaCreacion, DateTime FechaCreacionUtc, DateTime FechaModificacion, DateTime FechaModificacionUtc, int Proceso, string Usuario, string Estado, string Insertar)
+        public static int ActualizarClienteEstadoAll(string Id, string Nombre, int Edad, string Telefono, string Mail, double Saldo, DateTime FechaCreacion, string FechaCreacionUtc, DateTime FechaModificacion, string FechaModificacionUtc, int Proceso, string Usuario, string Estado, string Insertar)
         {
             int resultado = new int();
             SqlConnection Conexion = new SqlConnection(cadenaConexion);

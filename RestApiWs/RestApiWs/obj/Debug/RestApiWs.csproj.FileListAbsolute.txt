@@ -18,9 +18,6 @@ C:\Users\EfrainMejiasC\Documents\Visual Studio 2017\RestApiWs\RestApiWs\obj\Debu
 C:\Users\EfrainMejiasC\Documents\Visual Studio 2017\RestApiWs\RestApiWs\obj\Debug\RestApiWs.dll
 C:\Users\EfrainMejiasC\Documents\Visual Studio 2017\RestApiWs\RestApiWs\obj\Debug\RestApiWs.pdb
 C:\Users\EfrainMejiasC\Documents\Visual Studio 2017\RestApiWs\RestApiWs\obj\Debug\RestApiWs.csprojResolveAssemblyReference.cache
-C:\Users\EfrainMejiasC\Documents\Visual Studio 2017\Proyectos\RestApiWeb\RestApiWeb\RestApiWs\RestApiWs\obj\Debug\RestApiWs.csproj.CoreCompileInputs.cache
-C:\Users\EfrainMejiasC\Documents\Visual Studio 2017\Proyectos\RestApiWeb\RestApiWeb\RestApiWs\RestApiWs\obj\Debug\RestApiWs.dll
-C:\Users\EfrainMejiasC\Documents\Visual Studio 2017\Proyectos\RestApiWeb\RestApiWeb\RestApiWs\RestApiWs\obj\Debug\RestApiWs.pdb
 C:\Users\EfrainMejiasC\Documents\Visual Studio 2017\Proyectos\RestApiWeb\RestApiWeb\RestApiWs\RestApiWs\bin\RestApiWs.dll.config
 C:\Users\EfrainMejiasC\Documents\Visual Studio 2017\Proyectos\RestApiWeb\RestApiWeb\RestApiWs\RestApiWs\bin\RestApiWs.dll
 C:\Users\EfrainMejiasC\Documents\Visual Studio 2017\Proyectos\RestApiWeb\RestApiWeb\RestApiWs\RestApiWs\bin\RestApiWs.pdb
@@ -37,4 +34,7 @@ C:\Users\EfrainMejiasC\Documents\Visual Studio 2017\Proyectos\RestApiWeb\RestApi
 C:\Users\EfrainMejiasC\Documents\Visual Studio 2017\Proyectos\RestApiWeb\RestApiWeb\RestApiWs\RestApiWs\bin\es\System.Net.Http.Formatting.resources.dll
 C:\Users\EfrainMejiasC\Documents\Visual Studio 2017\Proyectos\RestApiWeb\RestApiWeb\RestApiWs\RestApiWs\bin\es\System.Web.Http.resources.dll
 C:\Users\EfrainMejiasC\Documents\Visual Studio 2017\Proyectos\RestApiWeb\RestApiWeb\RestApiWs\RestApiWs\bin\es\System.Web.Http.WebHost.resources.dll
+C:\Users\EfrainMejiasC\Documents\Visual Studio 2017\Proyectos\RestApiWeb\RestApiWeb\RestApiWs\RestApiWs\obj\Debug\RestApiWs.csproj.CoreCompileInputs.cache
+C:\Users\EfrainMejiasC\Documents\Visual Studio 2017\Proyectos\RestApiWeb\RestApiWeb\RestApiWs\RestApiWs\obj\Debug\RestApiWs.dll
+C:\Users\EfrainMejiasC\Documents\Visual Studio 2017\Proyectos\RestApiWeb\RestApiWeb\RestApiWs\RestApiWs\obj\Debug\RestApiWs.pdb
 C:\Users\EfrainMejiasC\Documents\Visual Studio 2017\Proyectos\RestApiWeb\RestApiWeb\RestApiWs\RestApiWs\obj\Debug\RestApiWs.csprojResolveAssemblyReference.cache

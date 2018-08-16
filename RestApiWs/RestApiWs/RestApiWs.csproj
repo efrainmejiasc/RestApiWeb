@@ -98,12 +98,12 @@
       <DependentUpon>default.aspx</DependentUpon>
     </Compile>
     <Compile Include="Engine\FuncionesApi.cs" />
+    <Compile Include="Engine\FuncionesData.cs" />
     <Compile Include="Engine\FuncionesDb.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Cliente.cs" />
-    <Compile Include="Models\ClienteSync.cs" />
     <Compile Include="Models\SyncIn.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
