@@ -11,6 +11,7 @@ namespace RestApiWs.Controllers
 {
     public class ActualizarClienteEstadoController : ApiController
     {
+        [HttpPut]
         public HttpResponseMessage PutActualizarClienteEstado([FromBody]  Cliente Customer)
         {
             if (Customer == null)

@@ -234,6 +234,28 @@ namespace RestApiWs.Engine
         }
 
         [System.Web.Services.WebMethod]
+        public static int ExisteVersionSync(string Version)
+        {
+            object obj = new object();
+            int resultado = -1;
+            SqlConnection Conexion = new SqlConnection(cadenaConexion);
+            using (Conexion)
+            {
+                Conexion.Open();
+                SqlCommand command = new SqlCommand("Sp_ExisteVersionSync", Conexion);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@Version", Version);
+                obj = command.ExecuteScalar();
+                Conexion.Close();
+            }
+            if (obj != null)
+            {
+                resultado = Convert.ToInt32 (obj);
+            }
+            return resultado;
+        }
+
+        [System.Web.Services.WebMethod]
         public static int ActualizarClienteEstadoAll(string Id, string Nombre, int Edad, string Telefono, string Mail, double Saldo, DateTime FechaCreacion, string FechaCreacionUtc, DateTime FechaModificacion, string FechaModificacionUtc, int Proceso, string Usuario, string Estado, string Insertar)
         {
             int resultado = new int();
@@ -257,6 +279,56 @@ namespace RestApiWs.Engine
                 command.Parameters.AddWithValue("@Usuario", Usuario);
                 command.Parameters.AddWithValue("@Estado", Estado);
                 command.Parameters.AddWithValue("@Transaccion", Insertar);
+                resultado = command.ExecuteNonQuery();
+                Conexion.Close();
+            }
+
+            return resultado;
+        }
+
+        [System.Web.Services.WebMethod]
+        public static int SyncEstado(string Version,  DateTime FechaCreacion, string FechaCreacionUtc,  string NombreTabla, string Usuario, string Dispositivo, string Estado)
+        {
+            int resultado = new int();
+            object obj = new object();
+            SqlConnection Conexion = new SqlConnection(cadenaConexion);
+            using (Conexion)
+            {
+                Conexion.Open();
+                SqlCommand command = new SqlCommand("Sp_SyncEstado", Conexion);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@Version", Version);
+                command.Parameters.AddWithValue("@FechaCreacion", FechaCreacion);
+                command.Parameters.AddWithValue("@FechaCreacionUtc", FechaCreacionUtc);
+                command.Parameters.AddWithValue("@NombreTabla", NombreTabla);
+                command.Parameters.AddWithValue("@Usuario", Usuario);
+                command.Parameters.AddWithValue("@Dispositivo", Dispositivo);
+                command.Parameters.AddWithValue("@Estado", Estado);
+                obj = command.ExecuteScalar();
+                Conexion.Close();
+            }
+            if (obj != null)
+            {
+                resultado = Convert.ToInt32(obj);
+            }
+
+            return resultado;
+        }
+
+        [System.Web.Services.WebMethod]
+        public static int ActualizarSyncEstado(string Version,int Inicio , int Final ,string Estado)
+        {
+            int resultado = new int();
+            SqlConnection Conexion = new SqlConnection(cadenaConexion);
+            using (Conexion)
+            {
+                Conexion.Open();
+                SqlCommand command = new SqlCommand("Sp_ActualizarSyncEstado", Conexion);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@Version", Version);
+                command.Parameters.AddWithValue("@Inicio", Inicio);
+                command.Parameters.AddWithValue("@Final", Final);
+                command.Parameters.AddWithValue("@Estado", Estado);
                 resultado = command.ExecuteNonQuery();
                 Conexion.Close();
             }
