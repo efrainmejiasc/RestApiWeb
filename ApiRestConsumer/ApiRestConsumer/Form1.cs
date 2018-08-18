@@ -112,7 +112,6 @@ namespace ApiRestConsumer
         public async void  EnviarDocumentoPost(string json)
         {
             string urlValidacion = string.Empty;
-         
             HttpClient client = new HttpClient();
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));

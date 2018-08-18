@@ -315,6 +315,29 @@ namespace RestApiWs.Engine
             return resultado;
         }
 
+
+        [System.Web.Services.WebMethod]
+        public static int SyncEstado()
+        {
+            int resultado = 0;
+            object obj = new object();
+            SqlConnection Conexion = new SqlConnection(cadenaConexion);
+            using (Conexion)
+            {
+                Conexion.Open();
+                SqlCommand command = new SqlCommand("Sp_ExisteSyncIniciada", Conexion);
+                command.CommandType = CommandType.StoredProcedure;
+                obj = command.ExecuteScalar();
+                Conexion.Close();
+            }
+            if (obj != null)
+            {
+                resultado = Convert.ToInt32(obj);
+            }
+
+            return resultado;
+        }
+
         [System.Web.Services.WebMethod]
         public static int ActualizarSyncEstado(string Version,int Inicio , int Final ,string Estado)
         {

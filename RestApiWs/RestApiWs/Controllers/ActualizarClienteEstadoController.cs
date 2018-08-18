@@ -19,11 +19,21 @@ namespace RestApiWs.Controllers
                 throw new ArgumentNullException();
             }
 
+             int r = Engine.FuncionesDb.SyncEstado();
+            if (r == -200)
+            {
+                var response = Request.CreateResponse<Cliente>(HttpStatusCode.Created, Customer);
+                string uri = Url.Link("DefaultApi", new { id = -109 });//EXISTE UNA SINCRONIZACION EN PROCESO
+                response.Headers.Location = new Uri(uri);
+                response.Headers.Add("Mensaje", "Sincronizacion en Proceso");
+                return response;
+            }
+
             string existeId = Engine.FuncionesDb.SelectClienteId(Customer.Id);
             if (existeId == string.Empty)
             {
                 var response = Request.CreateResponse<Cliente>(HttpStatusCode.Created, Customer);
-                response.Headers.Location = new Uri("http://efrain1234-001-site1.ftempurl.com/api/Cliente/" + "-106");//EL MAIL YA ESTA REGISTRADO
+                response.Headers.Location = new Uri("http://efrain1234-001-site1.ftempurl.com/api/Cliente/" + "-103");//// NO EXISTE EL ID DEL CLIENTE
                 return response;
             }
 

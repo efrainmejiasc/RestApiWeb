@@ -7,13 +7,14 @@ using System.Web.Http;
 using RestApiWs.Models;
 using Newtonsoft.Json;
 using System.Data;
-using RestApiWs.Engine;
 using System.Web.Script.Serialization;
 
 namespace RestApiWs.Controllers
 {
+
     public class ClienteController : ApiController
     {
+        [HttpGet]
         public string  GetCliente()
         {
             string  resultado = string.Empty;
@@ -22,12 +23,13 @@ namespace RestApiWs.Controllers
             List<Cliente> Customer = new List<Cliente>();
             if (dt.Rows.Count > 0)
             {
-                Customer = SetListaCliente(dt);
+                Customer = Engine.FuncionesApi.SetListaCliente(dt);
                 resultado = new JavaScriptSerializer().Serialize(Customer);
             }
             return resultado;
         }
 
+        [HttpGet]
         public string  GetCliente(string Id)
         {
             string resultado = string.Empty;
@@ -36,39 +38,12 @@ namespace RestApiWs.Controllers
             List<Cliente> Customer = new List<Cliente>();
             if (dt.Rows.Count > 0)
             {
-                Customer = SetListaCliente(dt);
+                Customer = Engine.FuncionesApi.SetListaCliente(dt);
                 resultado = new JavaScriptSerializer().Serialize(Customer);
             }
             return resultado;
         }
 
-        private List<Cliente> SetListaCliente (DataTable dt)
-        {
-            List<Cliente> Customer = new List<Cliente>();
-            foreach (DataRow r in dt.Rows)
-            {
-                Cliente lineaCliente = new Cliente
-                {
-                    Numero = Convert.ToInt32(r[0]),
-                    Id = r[1].ToString(),
-                    Nombre = r[2].ToString(),
-                    Edad = Convert.ToInt32(r[3]),
-                    Telefono = r[4].ToString(),
-                    Mail = r[5].ToString(),
-                    Saldo = Convert.ToDouble(r[6]),
-                    FechaCreacion = Convert.ToDateTime(r[7]),
-                    FechaCreacionUtc = r[8].ToString(),
-                    FechaModificacion = Convert.ToDateTime(r[9]),
-                    FechaModificacionUtc = r[10].ToString(),
-                    Proceso = Convert.ToInt32(r[11]),
-                    Usuario = r[12].ToString(),
-                    Estado = r[13].ToString(),
-                };
-                Customer.Add(lineaCliente);
-            }
-            return Customer;
-        } 
-
-   
+      
     }
 }

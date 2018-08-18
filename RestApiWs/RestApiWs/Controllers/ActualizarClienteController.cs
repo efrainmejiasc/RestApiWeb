@@ -19,6 +19,16 @@ namespace RestApiWs.Controllers
                 throw new ArgumentNullException();
             }
 
+            int r = Engine.FuncionesDb.SyncEstado();
+            if (r == -200)
+            {
+                var response = Request.CreateResponse<Cliente>(HttpStatusCode.Created, Customer);
+                string uri = Url.Link("DefaultApi", new { id = -109 });//EXISTE UNA SINCRONIZACION EN PROCESO
+                response.Headers.Location = new Uri(uri);
+                response.Headers.Add("Mensaje", "Sincronizacion en Proceso");
+                return response;
+            }
+
             string existeNumero = Engine.FuncionesDb.SelectNumeroClienteId(Customer.Id,Customer.Estado);
             if (existeNumero == string.Empty)
             {

@@ -21,15 +21,22 @@ namespace RestApiWs.Controllers
                 throw new ArgumentNullException();
             }
 
-            Customer.Id = Engine.FuncionesApi.IdentificadorReg().ToString();
-            string existeIdMail = Convert.ToString(Engine.FuncionesDb.ExisteClienteIdMail(Customer.Id, Customer.Mail));
-            if ( existeIdMail == "-1" )
+            int r = Engine.FuncionesDb.SyncEstado();
+            if (r == -200)
             {
                 var response = Request.CreateResponse<Cliente>(HttpStatusCode.Created, Customer);
-                response.Headers.Location = new Uri("http://efrain1234-001-site1.ftempurl.com/api/Cliente/" + "-100");//EL ID  YA ESTA REGISTRADO
+                response.Headers.Location = new Uri("http://efrain1234-001-site1.ftempurl.com/api/Cliente/" + "-109");//EXISTE UNA SINCRONIZACION EN PROCESO
                 return response;
             }
-           else if (existeIdMail == "-2")
+
+            string existeIdMail = "-1";
+            while(existeIdMail == "-1")
+            {
+                Customer.Id = Engine.FuncionesApi.IdentificadorReg().ToString();
+                existeIdMail = Convert.ToString(Engine.FuncionesDb.ExisteClienteIdMail(Customer.Id, Customer.Mail));
+            }
+
+            if (existeIdMail == "-2")
             {
                 var response = Request.CreateResponse<Cliente>(HttpStatusCode.Created, Customer);
                 response.Headers.Location = new Uri("http://efrain1234-001-site1.ftempurl.com/api/Cliente/" + "-107");//EL MAIL YA ESTA REGISTRADO
