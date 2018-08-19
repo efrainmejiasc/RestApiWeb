@@ -324,7 +324,7 @@ namespace ApiRestConsumer
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             //HttpResponseMessage response = await client.PostAsync("http://localhost:50445/api/SyncIn/", new StringContent(json, Encoding.UTF8, "application/json"));
-            HttpResponseMessage response = await client.PostAsync("http://efrain1234-001-site1.ftempurl.com/api/SyncIn/", new StringContent(json, Encoding.UTF8, "application/json"));
+            HttpResponseMessage response = await client.PostAsync("http://efrain1234-001-site1.ftempurl.com/api/SyncRegistro/", new StringContent(json, Encoding.UTF8, "application/json"));
             if (response.IsSuccessStatusCode)
             {
                 urlValidacion = response.Headers.Location.ToString();
