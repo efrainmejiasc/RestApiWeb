@@ -130,86 +130,7 @@ namespace ApiRestConsumer
 
         }
 
-        public class Cliente
-        {
-
-            [JsonProperty("Numero")]
-            public int Numero { get; set; }
-
-            [JsonProperty("Id")]
-            public string Id { get; set; }
-
-            [JsonProperty("Nombre")]
-            public string Nombre { get; set; }
-
-            [JsonProperty("Edad")]
-            public int Edad { get; set; }
-
-            [JsonProperty("Telefono")]
-            public string Telefono { get; set; }
-
-            [JsonProperty("Mail")]
-            public string Mail { get; set; }
-
-            [JsonProperty("Saldo")]
-            public double Saldo { get; set; }
-
-            [JsonConverter(typeof(CustomDateTimeConverter))]
-            public DateTime FechaCreacion { get; set; }
-
-            [JsonProperty("FechaCreacionUtc")]
-            public string FechaCreacionUtc { get; set; }
-
-            [JsonConverter(typeof(CustomDateTimeConverter))]
-            public DateTime FechaModificacion { get; set; }
-
-            [JsonProperty("FechaModificacionUtc")]
-            public string FechaModificacionUtc { get; set; }
-
-            [JsonProperty("Proceso")]
-            public int Proceso { get; set; }
-
-            [JsonProperty("Usuario")]
-            public string Usuario { get; set; }
-
-            [JsonProperty("Estado")]
-            public string Estado { get; set; }
-
-            [JsonProperty("Transaccion")]
-            public string Transaccion { get; set; }
-        }
-
-
-
-            public class CustomDateTimeConverter : DateTimeConverterBase
-        {
-            
-            private const string Format = "dd. MM. yyyy HH:mm";
-
-            public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
-            {
-                writer.WriteValue(((DateTime)value).ToString(Format));
-            }
-
       
-            public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
-            {
-                if (reader.Value == null)
-                {
-                    return null;
-                }
-
-                var s = reader.Value.ToString();
-                DateTime result;
-                if (DateTime.TryParseExact(s, Format, CultureInfo.InvariantCulture, DateTimeStyles.None, out result))
-                {
-                    return result;
-                }
-
-                return DateTime.Now;
-            }
-        }
-
 
         private void btnPut_Click(object sender, EventArgs e)
         {
@@ -333,8 +254,8 @@ namespace ApiRestConsumer
 
         public string SetListaCliente()
         {
-           List<Cliente> Customer = new List<Cliente>();
-           Cliente lineaCliente = new Cliente
+           List<SyncRegistro> Customer = new List<SyncRegistro>();
+           SyncRegistro lineaCliente = new SyncRegistro
            {
                 Numero = 0,
                 Id = "C0A2D3F2-8530-47BB-B833-000BA4FB1B7B",
@@ -353,7 +274,7 @@ namespace ApiRestConsumer
                 Transaccion= "INSERTAR",
            };
             Customer.Insert (0,lineaCliente);
-            lineaCliente = new Cliente
+            lineaCliente = new SyncRegistro
             {
                 Numero = 0,
                 Id = "866B3180-C080-4CD9-BA19-DE5E983DE9D5",
@@ -372,7 +293,7 @@ namespace ApiRestConsumer
                 Transaccion = "INSERTAR",
             };
             Customer.Insert(1, lineaCliente);
-            lineaCliente = new Cliente
+            lineaCliente = new SyncRegistro
             {
                 Numero = 0,
                 Id = "33125839-A192-4BB6-A0D0-5C022AAFC02F",
@@ -418,6 +339,139 @@ namespace ApiRestConsumer
             }
 
         }
+
+        public class Cliente
+        {
+
+            [JsonProperty("Numero")]
+            public int Numero { get; set; }
+
+            [JsonProperty("Id")]
+            public string Id { get; set; }
+
+            [JsonProperty("Nombre")]
+            public string Nombre { get; set; }
+
+            [JsonProperty("Edad")]
+            public int Edad { get; set; }
+
+            [JsonProperty("Telefono")]
+            public string Telefono { get; set; }
+
+            [JsonProperty("Mail")]
+            public string Mail { get; set; }
+
+            [JsonProperty("Saldo")]
+            public double Saldo { get; set; }
+
+            [JsonConverter(typeof(CustomDateTimeConverter))]
+            public DateTime FechaCreacion { get; set; }
+
+            [JsonProperty("FechaCreacionUtc")]
+            public string FechaCreacionUtc { get; set; }
+
+            [JsonConverter(typeof(CustomDateTimeConverter))]
+            public DateTime FechaModificacion { get; set; }
+
+            [JsonProperty("FechaModificacionUtc")]
+            public string FechaModificacionUtc { get; set; }
+
+            [JsonProperty("Proceso")]
+            public int Proceso { get; set; }
+
+            [JsonProperty("Usuario")]
+            public string Usuario { get; set; }
+
+            [JsonProperty("Estado")]
+            public string Estado { get; set; }
+
+            [JsonProperty("Transaccion")]
+            public string Transaccion { get; set; }
+        }
+
+        public class SyncRegistro
+        {
+            [JsonProperty("Dispositivo")]
+            public string Dispositivo { get; set; }
+
+            [JsonProperty("Version")]
+            public string Version { get; set; }
+
+            [JsonProperty("Numero")]
+            public int Numero { get; set; }
+
+            [JsonProperty("Id")]
+            public string Id { get; set; }
+
+            [JsonProperty("Nombre")]
+            public string Nombre { get; set; }
+
+            [JsonProperty("Edad")]
+            public int Edad { get; set; }
+
+            [JsonProperty("Telefono")]
+            public string Telefono { get; set; }
+
+            [JsonProperty("Mail")]
+            public string Mail { get; set; }
+
+            [JsonProperty("Saldo")]
+            public double Saldo { get; set; }
+
+            [JsonConverter(typeof(CustomDateTimeConverter))]
+            public DateTime FechaCreacion { get; set; }
+
+            [JsonProperty("FechaCreacionUtc")]
+            public string FechaCreacionUtc { get; set; }
+
+            [JsonConverter(typeof(CustomDateTimeConverter))]
+            public DateTime FechaModificacion { get; set; }
+
+            [JsonProperty("FechaModificacionUtc")]
+            public string FechaModificacionUtc { get; set; }
+
+            [JsonProperty("Proceso")]
+            public int Proceso { get; set; }
+
+            [JsonProperty("Usuario")]
+            public string Usuario { get; set; }
+
+            [JsonProperty("Estado")]
+            public string Estado { get; set; }
+
+            [JsonProperty("Transaccion")]
+            public string Transaccion { get; set; }
+        }
+
+        public class CustomDateTimeConverter : DateTimeConverterBase
+        {
+
+            private const string Format = "dd. MM. yyyy HH:mm";
+
+            public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+            {
+                writer.WriteValue(((DateTime)value).ToString(Format));
+            }
+
+
+            public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+            {
+                if (reader.Value == null)
+                {
+                    return null;
+                }
+
+                var s = reader.Value.ToString();
+                DateTime result;
+                if (DateTime.TryParseExact(s, Format, CultureInfo.InvariantCulture, DateTimeStyles.None, out result))
+                {
+                    return result;
+                }
+
+                return DateTime.Now;
+            }
+        }
+
 
     }
 }
