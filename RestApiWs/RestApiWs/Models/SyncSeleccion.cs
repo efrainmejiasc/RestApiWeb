@@ -5,10 +5,12 @@ using System.Web;
 
 namespace RestApiWs.Models
 {
-    public class SynOut
+    public class SyncSeleccion
     {
         public string Version { get; set; }
+
         public string Usuario { get; set; }
+
         public string Dispositivo { get; set; }
     }
 }

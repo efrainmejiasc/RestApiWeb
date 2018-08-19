@@ -37,4 +37,3 @@ C:\Users\EfrainMejiasC\Documents\Visual Studio 2017\Proyectos\RestApiWeb\RestApi
 C:\Users\EfrainMejiasC\Documents\Visual Studio 2017\Proyectos\RestApiWeb\RestApiWeb\RestApiWs\RestApiWs\obj\Debug\RestApiWs.csproj.CoreCompileInputs.cache
 C:\Users\EfrainMejiasC\Documents\Visual Studio 2017\Proyectos\RestApiWeb\RestApiWeb\RestApiWs\RestApiWs\obj\Debug\RestApiWs.dll
 C:\Users\EfrainMejiasC\Documents\Visual Studio 2017\Proyectos\RestApiWeb\RestApiWeb\RestApiWs\RestApiWs\obj\Debug\RestApiWs.pdb
-C:\Users\EfrainMejiasC\Documents\Visual Studio 2017\Proyectos\RestApiWeb\RestApiWeb\RestApiWs\RestApiWs\obj\Debug\RestApiWs.csprojResolveAssemblyReference.cache

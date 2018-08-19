@@ -339,7 +339,7 @@ namespace RestApiWs.Engine
         }
 
         [System.Web.Services.WebMethod]
-        public static int ActualizarSyncEstado(string Version,int Inicio , int Final ,string Estado)
+        public static int ActualizarSyncEstado(string Version,string Estado)
         {
             int resultado = new int();
             SqlConnection Conexion = new SqlConnection(cadenaConexion);
@@ -349,8 +349,6 @@ namespace RestApiWs.Engine
                 SqlCommand command = new SqlCommand("Sp_ActualizarSyncEstado", Conexion);
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.AddWithValue("@Version", Version);
-                command.Parameters.AddWithValue("@Inicio", Inicio);
-                command.Parameters.AddWithValue("@Final", Final);
                 command.Parameters.AddWithValue("@Estado", Estado);
                 resultado = command.ExecuteNonQuery();
                 Conexion.Close();
@@ -408,6 +406,26 @@ namespace RestApiWs.Engine
                 Conexion.Open();
                 SqlCommand command = new SqlCommand("Sp_SelectCliente", Conexion);
                 command.CommandType = CommandType.StoredProcedure;
+                SqlDataAdapter dataAdaptador = new SqlDataAdapter(command);
+                dataAdaptador.Fill(dataTabla);
+                Conexion.Close();
+            }
+            return dataTabla;
+        }
+
+        [System.Web.Services.WebMethod]
+        public static DataTable SyncUltimaVersion(string version)
+        {
+            DataTable dataTabla = new DataTable();
+            SqlConnection Conexion = new SqlConnection(cadenaConexion);
+
+            using (Conexion)
+            {
+                Conexion.Open();
+                SqlCommand command = new SqlCommand("Sp_SelectFilasSync", Conexion);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Clear();
+                command.Parameters.AddWithValue("@version", version);
                 SqlDataAdapter dataAdaptador = new SqlDataAdapter(command);
                 dataAdaptador.Fill(dataTabla);
                 Conexion.Close();
