@@ -414,7 +414,7 @@ namespace RestApiWs.Engine
         }
 
         [System.Web.Services.WebMethod]
-        public static DataTable SyncUltimaVersion(string version)
+        public static DataTable SelectFilasSync(string version)
         {
             DataTable dataTabla = new DataTable();
             SqlConnection Conexion = new SqlConnection(cadenaConexion);

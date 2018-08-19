@@ -67,7 +67,7 @@ namespace RestApiWs.Controllers
         {
             string resultado = string.Empty;
             DataTable dt = new DataTable();
-            dt = Engine.FuncionesDb.TableDataCliente();
+            dt = Engine.FuncionesDb.SelectFilasSync(version);
             dt = Engine.FuncionesApi.AddColumnVersion(dt, version);
             List<SyncRegistro> Customer = new List<SyncRegistro>();
             string estado = "TERMINADO";

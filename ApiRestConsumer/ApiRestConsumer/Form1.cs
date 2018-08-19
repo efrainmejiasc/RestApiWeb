@@ -259,10 +259,10 @@ namespace ApiRestConsumer
            {
                 Numero = 0,
                 Id = "C0A2D3F2-8530-47BB-B833-000BA4FB1B7B",
-                Nombre = "EFRAIN MEJIAS",
+                Nombre = "JJ Cardenas",
                 Edad = 46,
-                Telefono = "0424-4133677",
-                Mail = "efrainmejiasc@gmail.com",
+                Telefono = "0424-4136787",
+                Mail = "jj@gmail.com",
                 Saldo = 20000000.678,
                 FechaCreacion = DateTime.Now,
                 FechaCreacionUtc = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss+hh:mm"),
@@ -272,16 +272,17 @@ namespace ApiRestConsumer
                 Usuario = "EFRAIN",
                 Estado = "ACTIVO",
                 Transaccion= "INSERTAR",
+                Dispositivo ="efrain001"
            };
             Customer.Insert (0,lineaCliente);
             lineaCliente = new SyncRegistro
             {
                 Numero = 0,
                 Id = "866B3180-C080-4CD9-BA19-DE5E983DE9D5",
-                Nombre = "JUAN MEJIAS",
+                Nombre = "MM NOTEC",
                 Edad = 42,
-                Telefono = "0424-4133677",
-                Mail = "Juan@gmail.com",
+                Telefono = "0424-4100077",
+                Mail = "mm@gmail.com",
                 Saldo = 3000,
                 FechaCreacion = DateTime.Now,
                 FechaCreacionUtc = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss+hh:mm"),
@@ -291,16 +292,17 @@ namespace ApiRestConsumer
                 Usuario = "EFRAIN",
                 Estado = "ACTIVO",
                 Transaccion = "INSERTAR",
+                Dispositivo = "efrain001"
             };
             Customer.Insert(1, lineaCliente);
             lineaCliente = new SyncRegistro
             {
                 Numero = 0,
                 Id = "33125839-A192-4BB6-A0D0-5C022AAFC02F",
-                Nombre = "ROGER MEJIAS",
+                Nombre = "ALIAS MMK",
                 Edad = 32,
-                Telefono = "0424-4133677",
-                Mail = "JuanCarlos@gmail.com",
+                Telefono = "0424-00873677",
+                Mail = "almk@gmail.com",
                 Saldo = 1000000,
                 FechaCreacion = DateTime.Now,
                 FechaCreacionUtc = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss+hh:mm"),
@@ -310,6 +312,7 @@ namespace ApiRestConsumer
                 Usuario = "EFRAIN",
                 Estado = "INACTIVO",
                 Transaccion = "INSERTAR",
+                Dispositivo = "efrain001"
             };
             Customer.Insert(2, lineaCliente);
 
@@ -323,7 +326,7 @@ namespace ApiRestConsumer
             HttpClient client = new HttpClient();
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            //HttpResponseMessage response = await client.PostAsync("http://localhost:50445/api/SyncIn/", new StringContent(json, Encoding.UTF8, "application/json"));
+           // HttpResponseMessage response = await client.PostAsync("http://localhost:50445/api/SyncRegistro/", new StringContent(json, Encoding.UTF8, "application/json"));
             HttpResponseMessage response = await client.PostAsync("http://efrain1234-001-site1.ftempurl.com/api/SyncRegistro/", new StringContent(json, Encoding.UTF8, "application/json"));
             if (response.IsSuccessStatusCode)
             {
