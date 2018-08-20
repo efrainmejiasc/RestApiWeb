@@ -89,6 +89,17 @@ namespace RestApiWs.Engine
             }
             return dt;
         }
+
+
+        public static SyncEstado SetSynEstado(string version , string estado)
+        {
+            SyncEstado SyncEstado = new SyncEstado
+            {
+                Version = version,
+                Estado = estado
+            };
+            return SyncEstado;
+        }
       
     }
 }

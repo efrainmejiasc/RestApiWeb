@@ -41,7 +41,7 @@ namespace RestApiWs.Controllers
             return resultado;
         }
 
-        public string GetClienteAll(string version)
+        private string GetClienteAll(string version)
         {
             string resultado = string.Empty;
             DataTable dt = new DataTable();
@@ -84,7 +84,24 @@ namespace RestApiWs.Controllers
             return resultado;
         }
 
-
+        [HttpGet]
+        public string GetSyncInOut_Exito(string version)
+        {
+            string resultado = string.Empty;
+            SyncEstado SyncEstado = new SyncEstado();
+            int r = Engine.FuncionesDb.SyncInOutExito(version);
+            if (r > 0)
+            {
+                SyncEstado = Engine.FuncionesApi.SetSynEstado(version, "OK");
+                resultado = new JavaScriptSerializer().Serialize(SyncEstado);
+            }
+            else
+            {
+                SyncEstado = Engine.FuncionesApi.SetSynEstado(version, "FALLO");
+                resultado = new JavaScriptSerializer().Serialize(SyncEstado);
+            }
+            return resultado;
+        }
 
     }
 }

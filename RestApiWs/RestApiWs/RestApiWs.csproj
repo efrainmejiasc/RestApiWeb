@@ -105,6 +105,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Cliente.cs" />
+    <Compile Include="Models\SyncEstado.cs" />
     <Compile Include="Models\SyncIn.cs" />
     <Compile Include="Models\SyncRegistro.cs" />
     <Compile Include="Models\SyncSeleccion.cs" />

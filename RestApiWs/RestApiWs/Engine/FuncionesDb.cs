@@ -170,7 +170,30 @@ namespace RestApiWs.Engine
             return resultado;
         }
 
-      
+        [System.Web.Services.WebMethod]
+        public static int SyncInOutExito(string version)
+        {
+            object obj = new object();
+            int resultado = 0;
+            SqlConnection Conexion = new SqlConnection(cadenaConexion);
+            using (Conexion)
+            {
+                Conexion.Open();
+                SqlCommand command = new SqlCommand("Sp_SyncInOutExito", Conexion);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@Version", version);
+                command.Parameters.AddWithValue("@Estado", "TERMINADO");
+                obj = command.ExecuteScalar();
+                Conexion.Close();
+            }
+            if (obj != null)
+            {
+                resultado = Convert.ToInt32(obj);
+            }
+            return resultado;
+        }
+
+
         [System.Web.Services.WebMethod]
         public static int InsertarClienteAll(string Id, string Nombre, int Edad, string Telefono, string Mail, double Saldo, DateTime FechaCreacion, string FechaCreacionUtc, DateTime FechaModificacion, string FechaModificacionUtc, int Proceso, string Usuario, string Estado, string Insertar)
         {
