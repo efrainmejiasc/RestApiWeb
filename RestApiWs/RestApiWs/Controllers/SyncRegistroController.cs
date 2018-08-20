@@ -64,7 +64,7 @@ namespace RestApiWs.Controllers
                             sync.Id = string.Empty;
                             sync.Id = a.Id;
                             sync.Resultado = false;
-                            sync.Error = -102;
+                            sync.Error = -104;
                             sync.Version = version;//EL CLIENTE NO SE PUDO INSERTAR
                         }
                     }
