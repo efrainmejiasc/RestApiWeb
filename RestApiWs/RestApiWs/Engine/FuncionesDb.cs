@@ -23,6 +23,7 @@ namespace RestApiWs.Engine
                 Conexion.Open();
                 SqlCommand command = new SqlCommand("Sp_ExisteIdMail", Conexion);
                 command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Clear();
                 command.Parameters.AddWithValue("@Id", Id);
                 command.Parameters.AddWithValue("@MAIL", MAIL);
                 obj = command.ExecuteScalar();
@@ -47,6 +48,7 @@ namespace RestApiWs.Engine
                 Conexion.Open();
                 SqlCommand command = new SqlCommand("Sp_SelectClienteIdMail", Conexion);
                 command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Clear();
                 command.Parameters.AddWithValue("@Id",Id);
                 command.Parameters.AddWithValue("@MAIL", MAIL);
                 obj = command.ExecuteScalar();
@@ -70,6 +72,7 @@ namespace RestApiWs.Engine
                 Conexion.Open();
                 SqlCommand command = new SqlCommand("Sp_SelectClienteMail", Conexion);
                 command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Clear();
                 command.Parameters.AddWithValue("@MAIL", MAIL);
                 obj = command.ExecuteScalar();
                 Conexion.Close();
@@ -92,6 +95,7 @@ namespace RestApiWs.Engine
                 Conexion.Open();
                 SqlCommand command = new SqlCommand("Sp_SelectClienteFechaCreacion", Conexion);
                 command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Clear();
                 command.Parameters.AddWithValue("@Id", Id);
                 obj = command.ExecuteScalar();
                 Conexion.Close();
@@ -114,6 +118,7 @@ namespace RestApiWs.Engine
                 Conexion.Open();
                 SqlCommand command = new SqlCommand("Sp_SelectClienteFechaCreacionUtc", Conexion);
                 command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Clear();
                 command.Parameters.AddWithValue("@Id", Id);
                 obj = command.ExecuteScalar();
                 Conexion.Close();
@@ -136,6 +141,7 @@ namespace RestApiWs.Engine
                 Conexion.Open();
                 SqlCommand command = new SqlCommand("Sp_SelectClienteId", Conexion);
                 command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Clear();
                 command.Parameters.AddWithValue("@Id", Id);
                 obj = command.ExecuteScalar();
                 Conexion.Close();
@@ -148,7 +154,7 @@ namespace RestApiWs.Engine
         }
 
         [System.Web.Services.WebMethod]
-        public static string SelectNumeroClienteId(string Id, string Estado)
+        public static string SelectNumeroClienteId(string Id)
         {
             object obj = new object();
             string resultado = string.Empty;
@@ -158,8 +164,8 @@ namespace RestApiWs.Engine
                 Conexion.Open();
                 SqlCommand command = new SqlCommand("Sp_SelectNumeroClienteId", Conexion);
                 command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Clear();
                 command.Parameters.AddWithValue("@Id", Id);
-                command.Parameters.AddWithValue("@Estado", Estado);
                 obj = command.ExecuteScalar();
                 Conexion.Close();
             }
@@ -181,6 +187,7 @@ namespace RestApiWs.Engine
                 Conexion.Open();
                 SqlCommand command = new SqlCommand("Sp_SyncInOutExito", Conexion);
                 command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Clear();
                 command.Parameters.AddWithValue("@Version", version);
                 command.Parameters.AddWithValue("@Estado", "TERMINADO");
                 obj = command.ExecuteScalar();
@@ -204,6 +211,7 @@ namespace RestApiWs.Engine
                 Conexion.Open();
                 SqlCommand command = new SqlCommand("Sp_InsertarClienteAll", Conexion);
                 command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Clear();
                 command.Parameters.AddWithValue("@Id", Id);
                 command.Parameters.AddWithValue("@Nombre", Nombre);
                 command.Parameters.AddWithValue("@Edad", Edad);
@@ -235,6 +243,7 @@ namespace RestApiWs.Engine
                 Conexion.Open();
                 SqlCommand command = new SqlCommand("Sp_ActualizarClienteAll", Conexion);
                 command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Clear();
                 command.Parameters.AddWithValue("@Id", Id);
                 command.Parameters.AddWithValue("@Nombre", Nombre);
                 command.Parameters.AddWithValue("@Edad", Edad);
@@ -267,6 +276,7 @@ namespace RestApiWs.Engine
                 Conexion.Open();
                 SqlCommand command = new SqlCommand("Sp_ExisteVersionSync", Conexion);
                 command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Clear();
                 command.Parameters.AddWithValue("@Version", Version);
                 obj = command.ExecuteScalar();
                 Conexion.Close();
@@ -288,6 +298,7 @@ namespace RestApiWs.Engine
                 Conexion.Open();
                 SqlCommand command = new SqlCommand("Sp_ActualizarClienteEstadoAll", Conexion);
                 command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Clear();
                 command.Parameters.AddWithValue("@Id", Id);
                 command.Parameters.AddWithValue("@Nombre", Nombre);
                 command.Parameters.AddWithValue("@Edad", Edad);
@@ -320,6 +331,7 @@ namespace RestApiWs.Engine
                 Conexion.Open();
                 SqlCommand command = new SqlCommand("Sp_SyncEstado", Conexion);
                 command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Clear();
                 command.Parameters.AddWithValue("@Version", Version);
                 command.Parameters.AddWithValue("@FechaCreacion", DateTime.Now);
                 command.Parameters.AddWithValue("@FechaCreacionUtc", FechaCreacionUtc);
@@ -371,6 +383,7 @@ namespace RestApiWs.Engine
                 Conexion.Open();
                 SqlCommand command = new SqlCommand("Sp_ActualizarSyncEstado", Conexion);
                 command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Clear();
                 command.Parameters.AddWithValue("@Version", Version);
                 command.Parameters.AddWithValue("@Estado", Estado);
                 resultado = command.ExecuteNonQuery();
@@ -390,6 +403,7 @@ namespace RestApiWs.Engine
                 Conexion.Open();
                 SqlCommand command = new SqlCommand("Sp_BorrarCliente", Conexion);
                 command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Clear();
                 command.Parameters.AddWithValue("@Id", Id);
                 resultado = command.ExecuteNonQuery();
                 Conexion.Close();

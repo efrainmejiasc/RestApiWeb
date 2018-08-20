@@ -29,7 +29,7 @@ namespace RestApiWs.Controllers
                 return response;
             }
 
-            string existeNumero = Engine.FuncionesDb.SelectNumeroClienteId(Customer.Id,Customer.Estado);
+            string existeNumero = Engine.FuncionesDb.SelectNumeroClienteId(Customer.Id);
             if (existeNumero == string.Empty)
             {
                 var response = Request.CreateResponse<Cliente>(HttpStatusCode.Created, Customer);
