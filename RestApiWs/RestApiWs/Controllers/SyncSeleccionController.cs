@@ -29,7 +29,7 @@ namespace RestApiWs.Controllers
             string FechaCreacionUtc = DateTime.UtcNow.ToString(Engine.FuncionesData.dateFormatUtc);
             string nombreTabla = "Cliente";
             string estado = "INICIADO";
-            int r = Engine.FuncionesDb.SyncEstado(version, FechaCreacion, FechaCreacionUtc, nombreTabla, Usuario, Dispositivo, estado);
+            int r = Engine.FuncionesDb.SyncEstado(version,FechaCreacionUtc, nombreTabla, Usuario, Dispositivo, estado);
             if (r == 200)
             {
                 resultado = GetClienteAll(version);

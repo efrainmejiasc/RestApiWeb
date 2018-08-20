@@ -29,10 +29,9 @@ namespace RestApiWs.Controllers
             }
 
             string nombreTabla = "Cliente";
-            DateTime FechaCreacion = DateTime.Now;
+            string estado = "INICIADO";
             string FechaCreacionUtc = DateTime.UtcNow.ToString(Engine.FuncionesData.dateFormatUtc);
-
-            int r = Engine.FuncionesDb.SyncEstado(version, FechaCreacion, FechaCreacionUtc, nombreTabla, Customer[0].Usuario, Customer[0].Dispositivo, "INICIADO");
+            int r = Engine.FuncionesDb.SyncEstado(version, FechaCreacionUtc, nombreTabla, Customer[0].Usuario, Customer[0].Dispositivo,estado);
             if (r == 200)
             {
                 string result = string.Empty;

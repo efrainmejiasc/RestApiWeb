@@ -58,7 +58,7 @@ namespace RestApiWs.Controllers
             else
             {
                 var response = Request.CreateResponse<Cliente>(HttpStatusCode.Created, Customer);
-                response.Headers.Location = new Uri("http://efrain1234-001-site1.ftempurl.com/api/Cliente/" + "-102");//EL CLIENTE NO PUDO SER REGISTRADO
+                response.Headers.Location = new Uri("http://efrain1234-001-site1.ftempurl.com/api/Cliente/" + "-104");//EL CLIENTE NO PUDO SER REGISTRADO
                 return response;
             }
         }

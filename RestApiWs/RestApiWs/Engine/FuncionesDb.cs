@@ -310,7 +310,7 @@ namespace RestApiWs.Engine
         }
 
         [System.Web.Services.WebMethod]
-        public static int SyncEstado(string Version,  DateTime FechaCreacion, string FechaCreacionUtc,  string NombreTabla, string Usuario, string Dispositivo, string Estado)
+        public static int SyncEstado(string Version, string FechaCreacionUtc,  string NombreTabla, string Usuario, string Dispositivo, string Estado)
         {
             int resultado = new int();
             object obj = new object();
@@ -321,7 +321,7 @@ namespace RestApiWs.Engine
                 SqlCommand command = new SqlCommand("Sp_SyncEstado", Conexion);
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.AddWithValue("@Version", Version);
-                command.Parameters.AddWithValue("@FechaCreacion", FechaCreacion);
+                command.Parameters.AddWithValue("@FechaCreacion", DateTime.Now);
                 command.Parameters.AddWithValue("@FechaCreacionUtc", FechaCreacionUtc);
                 command.Parameters.AddWithValue("@NombreTabla", NombreTabla);
                 command.Parameters.AddWithValue("@Usuario", Usuario);
