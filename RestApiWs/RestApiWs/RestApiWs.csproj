@@ -91,6 +91,7 @@
     <Compile Include="Controllers\NuevoClienteController.cs" />
     <Compile Include="Controllers\SyncSeleccionController.cs" />
     <Compile Include="Controllers\SyncRegistroController.cs" />
+    <Compile Include="Controllers\SyncSelectController.cs" />
     <Compile Include="default.aspx.cs">
       <DependentUpon>default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

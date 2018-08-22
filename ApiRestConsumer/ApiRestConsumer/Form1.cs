@@ -244,8 +244,6 @@ namespace ApiRestConsumer
 
         }
 
-
-
         private void btnJsonSend_Click(object sender, EventArgs e)
         {
            string json = SetListaCliente();

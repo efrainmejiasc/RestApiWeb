@@ -19,7 +19,7 @@ namespace RestApiWs.Controllers
                 throw new ArgumentNullException();
             }
 
-             int r = Engine.FuncionesDb.SyncEstado();
+            int r = Engine.FuncionesDb.SyncEstado();
             if (r == -200)
             {
                 var response = Request.CreateResponse<Cliente>(HttpStatusCode.Created, Customer);
@@ -29,7 +29,7 @@ namespace RestApiWs.Controllers
                 return response;
             }
 
-            string existeId = Engine.FuncionesDb.SelectClienteId(Customer.Id);
+            string existeId = Engine.FuncionesDb.SelectClienteId2(Customer.Id);
             if (existeId == string.Empty)
             {
                 var response = Request.CreateResponse<Cliente>(HttpStatusCode.Created, Customer);
@@ -38,7 +38,7 @@ namespace RestApiWs.Controllers
             }
 
             DataTable dt = new DataTable();
-            dt = Engine.FuncionesDb.TableDataClienteId(Customer.Id);
+            dt = Engine.FuncionesDb.TableDataClienteId2(Customer.Id);
             DataRow row = dt.Rows[0];
 
             int proceso = 0;

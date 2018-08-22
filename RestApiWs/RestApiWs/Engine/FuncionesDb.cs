@@ -154,6 +154,29 @@ namespace RestApiWs.Engine
         }
 
         [System.Web.Services.WebMethod]
+        public static string SelectClienteId2(string Id)
+        {
+            object obj = new object();
+            string resultado = string.Empty;
+            SqlConnection Conexion = new SqlConnection(cadenaConexion);
+            using (Conexion)
+            {
+                Conexion.Open();
+                SqlCommand command = new SqlCommand("Sp_SelectClienteId2", Conexion);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Clear();
+                command.Parameters.AddWithValue("@Id", Id);
+                obj = command.ExecuteScalar();
+                Conexion.Close();
+            }
+            if (obj != null)
+            {
+                resultado = obj.ToString();
+            }
+            return resultado;
+        }
+
+        [System.Web.Services.WebMethod]
         public static string SelectNumeroClienteId(string Id)
         {
             object obj = new object();
@@ -422,6 +445,26 @@ namespace RestApiWs.Engine
             {
                 Conexion.Open();
                 SqlCommand command = new SqlCommand("Sp_SelectClienteId", Conexion);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Clear();
+                command.Parameters.AddWithValue("@Id", ID);
+                SqlDataAdapter dataAdaptador = new SqlDataAdapter(command);
+                dataAdaptador.Fill(dataTabla);
+                Conexion.Close();
+            }
+            return dataTabla;
+        }
+
+        [System.Web.Services.WebMethod]
+        public static DataTable TableDataClienteId2(object ID)
+        {
+            DataTable dataTabla = new DataTable();
+            SqlConnection Conexion = new SqlConnection(cadenaConexion);
+
+            using (Conexion)
+            {
+                Conexion.Open();
+                SqlCommand command = new SqlCommand("Sp_SelectClienteId2", Conexion);
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.Clear();
                 command.Parameters.AddWithValue("@Id", ID);
