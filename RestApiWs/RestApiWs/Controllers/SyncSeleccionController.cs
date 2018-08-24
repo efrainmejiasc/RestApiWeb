@@ -63,23 +63,23 @@ namespace RestApiWs.Controllers
         }
 
         [HttpGet]
-        public string GetSyncOut_Next(string Usuario, string Dispositivo, string version)
+        public string GetSyncOut_Next(string Usuario, string Dispositivo, string Version)
         {
             string resultado = string.Empty;
             DataTable dt = new DataTable();
-            dt = Engine.FuncionesDb.SelectFilasSync(version);
-            dt = Engine.FuncionesApi.AddColumnVersion(dt, version);
+            dt = Engine.FuncionesDb.SelectFilasSync(Version);
+            dt = Engine.FuncionesApi.AddColumnVersion(dt, Version);
             List<SyncRegistro> Customer = new List<SyncRegistro>();
             string estado = "TERMINADO";
             if (dt.Rows.Count == 0)
             {
-                Engine.FuncionesDb.ActualizarSyncEstado(version, estado);
+                Engine.FuncionesDb.ActualizarSyncEstado(Version, estado);
             }
             else
             {
                 Customer = Engine.FuncionesApi.SetListaRegistro(dt);
                 resultado = new JavaScriptSerializer().Serialize(Customer);
-                Engine.FuncionesDb.ActualizarSyncEstado(version, estado);
+                Engine.FuncionesDb.ActualizarSyncEstado(Version, estado);
             }
             return resultado;
         }

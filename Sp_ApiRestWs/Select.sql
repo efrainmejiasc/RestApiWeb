@@ -1,3 +1,3 @@
 select * from Cliente order by NUMERO ASC
 select * from ClienteTrack
-SELECT * FROM   SyncTransaccion
+SELECT * FROM   SyncTransaccion order by numero asc 
