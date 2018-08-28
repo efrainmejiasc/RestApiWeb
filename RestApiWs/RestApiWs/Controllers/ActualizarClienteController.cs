@@ -51,7 +51,7 @@ namespace RestApiWs.Controllers
             if (resultado == -1)
             {
                 var response = Request.CreateResponse<Cliente>(HttpStatusCode.Created, Customer);
-                response.Headers.Location = new Uri("http://efrain1234-001-site1.ftempurl.com/api/Cliente/" + Customer.Id.ToString());
+                response.Headers.Location = new Uri("http://efrain1234-001-site1.ftempurl.com/api/Cliente/" + Customer.Id.ToString()); // ACTUALIZACION EXITOSA
                 response.Headers.Add("Mensaje", "Actualizacion Exitosa");
                 return response;
             }

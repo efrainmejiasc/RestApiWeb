@@ -53,7 +53,6 @@ namespace RestApiWs.Controllers
                 var response = Request.CreateResponse<Cliente>(HttpStatusCode.Created, Customer);
                 response.Headers.Location = new Uri("http://efrain1234-001-site1.ftempurl.com/api/Cliente/" + Customer.Id.ToString());
                 return response;
-
             }
             else
             {

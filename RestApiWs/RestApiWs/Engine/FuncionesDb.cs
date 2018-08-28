@@ -36,6 +36,52 @@ namespace RestApiWs.Engine
             return resultado;
         }
 
+        [System.Web.Services.WebMethod]
+        public static int  ExisteIdentificador(string Id)
+        {
+            object obj = new object();
+            int resultado = 0 ;
+            SqlConnection Conexion = new SqlConnection(cadenaConexion);
+            using (Conexion)
+            {
+                Conexion.Open();
+                SqlCommand command = new SqlCommand("Sp_ExisteIdentificador", Conexion);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Clear();
+                command.Parameters.AddWithValue("@Id", Id);
+                obj = command.ExecuteScalar();
+                Conexion.Close();
+            }
+            if (obj != null)
+            {
+                resultado = Convert.ToInt32(obj);
+            }
+            return resultado;
+        }
+
+        [System.Web.Services.WebMethod]
+        public static int ExisteEmail(string Mail)
+        {
+            object obj = new object();
+            int resultado = 0;
+            SqlConnection Conexion = new SqlConnection(cadenaConexion);
+            using (Conexion)
+            {
+                Conexion.Open();
+                SqlCommand command = new SqlCommand("Sp_ExisteEmail", Conexion);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Clear();
+                command.Parameters.AddWithValue("@Mail", Mail);
+                obj = command.ExecuteScalar();
+                Conexion.Close();
+            }
+            if (obj != null)
+            {
+                resultado = Convert.ToInt32(obj);
+            }
+            return resultado;
+        }
+
 
         [System.Web.Services.WebMethod]
         public static string SelectClienteIdMail(string Id,string MAIL)
