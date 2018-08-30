@@ -72,7 +72,8 @@ namespace RestApiWs.Controllers
                             sync.Id = a.Id;
                             sync.Resultado = true;
                             sync.Error = 0;
-                            sync.Version = version; // NUEVO REGISTRO CREADO EXITOSAMENTE
+                            sync.Version = version;
+                            sync.Email = a.Mail; // NUEVO REGISTRO CREADO EXITOSAMENTE
                         }
                         else
                         {
@@ -80,7 +81,8 @@ namespace RestApiWs.Controllers
                             sync.Id = a.Id;
                             sync.Resultado = false;
                             sync.Error = -104;
-                            sync.Version = version; //EL CLIENTE NO SE PUDO INSERTAR
+                            sync.Version = version;
+                            sync.Email = a.Mail;//EL CLIENTE NO SE PUDO INSERTAR
                         }
                     }
                     else if ((existeMail > 0 ) && a.Transaccion == "INSERTAR".ToUpper())
@@ -90,6 +92,7 @@ namespace RestApiWs.Controllers
                         sync.Resultado = false;
                         sync.Error = -332;
                         sync.Version = version; // EL MAIL EXISTE
+                        sync.Email = a.Mail;
                     }
                     else if ((existeIdMail == "-1" || existeIdMail == "-2") && (a.Transaccion == "ACTUALIZAR".ToUpper() || a.Transaccion == "ACTUALIZAR_ESTADO".ToUpper()))
                     {
@@ -108,7 +111,8 @@ namespace RestApiWs.Controllers
                             sync.Id = a.Id;
                             sync.Resultado = true;
                             sync.Error = 0;
-                            sync.Version = version; //ACTUALIZACION EXITOSA
+                            sync.Version = version;
+                            sync.Email = a.Mail; //ACTUALIZACION EXITOSA
                         }
                         else
                         {
@@ -116,7 +120,8 @@ namespace RestApiWs.Controllers
                             sync.Id = a.Id;
                             sync.Resultado = false;
                             sync.Error = -104;
-                            sync.Version = version; //EL CLIENTE NO SE PUDO ACTUALIZAR
+                            sync.Version = version;
+                            sync.Email = a.Mail; //EL CLIENTE NO SE PUDO ACTUALIZAR
                         }
                     }
                     else
@@ -125,7 +130,8 @@ namespace RestApiWs.Controllers
                         sync.Id = a.Id;
                         sync.Resultado = false;
                         sync.Error = -333;
-                        sync.Version = version; //EL PAYLOAD NO TIENE EL FORMATO CORRECTO
+                        sync.Version = version;
+                        sync.Email = a.Mail; //EL PAYLOAD NO TIENE EL FORMATO CORRECTO
                     }
 
                     listaSync.Insert(i, sync);

@@ -70,23 +70,23 @@ namespace RestApiWs.Controllers
 
         //METODO PARA OBTENER REGISTROS DESPUES DEL POST DE LA SINCRONIZACION
         [HttpGet]
-        public string GetSyncOut_Next(string Usuario, string Dispositivo, string Version)
+        public string GetSyncOut_Next(string Usuario, string Dispositivo, string VersionOld , string VersionNew)
         {
             string resultado = string.Empty;
             DataTable dt = new DataTable();
-            dt = Engine.FuncionesDb.SelectFilasSync(Version);
-            dt = Engine.FuncionesApi.AddColumnVersion(dt, Version);
+            dt = Engine.FuncionesDb.SelectFilasSync(VersionOld);
+            dt = Engine.FuncionesApi.AddColumnVersion(dt, VersionNew);
             List<SyncRegistro> Customer = new List<SyncRegistro>();
             string estado = "TERMINADO";
             if (dt.Rows.Count == 0)
             {
-                Engine.FuncionesDb.ActualizarSyncEstado(Version, estado);// ACTUALIZA EL ESTADO DE LA TRANSACCION  A TERMINADO
+                Engine.FuncionesDb.ActualizarSyncEstado(VersionNew, estado);// ACTUALIZA EL ESTADO DE LA TRANSACCION  A TERMINADO
             }
             else
             {
                 Customer = Engine.FuncionesApi.SetListaRegistro(dt);// CONVIERTE  LAS FILAS EN EL MODELO
                 resultado = new JavaScriptSerializer().Serialize(Customer);//SERIALIZA A JSON EL MODELO
-                Engine.FuncionesDb.ActualizarSyncEstado(Version, estado);// ACTUALIZA EL ESTADO DE LA TRANSACCION  A TERMINADO
+                Engine.FuncionesDb.ActualizarSyncEstado(VersionNew, estado);// ACTUALIZA EL ESTADO DE LA TRANSACCION  A TERMINADO
             }
             return resultado;
         }

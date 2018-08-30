@@ -14,5 +14,7 @@ namespace RestApiWs.Models
        public int  Error { get; set; }
 
        public string Version { get; set; }
+
+       public string Email { get; set; }
     }
 }
