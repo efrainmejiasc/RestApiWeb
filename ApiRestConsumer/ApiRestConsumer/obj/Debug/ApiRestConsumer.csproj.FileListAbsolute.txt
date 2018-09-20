@@ -49,3 +49,4 @@ C:\Users\EfrainMejiasC\Documents\Visual Studio 2017\Proyects\RestApiWeb\RestApiW
 C:\Users\EfrainMejiasC\Documents\Visual Studio 2017\Proyects\RestApiWeb\RestApiWeb\ApiRestConsumer\ApiRestConsumer\obj\Debug\ApiRestConsumer.csproj.CoreCompileInputs.cache
 C:\Users\EfrainMejiasC\Documents\Visual Studio 2017\Proyects\RestApiWeb\RestApiWeb\ApiRestConsumer\ApiRestConsumer\obj\Debug\ApiRestConsumer.exe
 C:\Users\EfrainMejiasC\Documents\Visual Studio 2017\Proyects\RestApiWeb\RestApiWeb\ApiRestConsumer\ApiRestConsumer\obj\Debug\ApiRestConsumer.pdb
+C:\Users\EfrainMejiasC\Documents\Visual Studio 2017\Proyects\RestApiWeb\RestApiWeb\ApiRestConsumer\ApiRestConsumer\obj\Debug\ApiRestConsumer.Form2.resources

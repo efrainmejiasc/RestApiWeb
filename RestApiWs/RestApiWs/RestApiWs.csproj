@@ -73,7 +73,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="default.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -87,13 +86,6 @@
     <Compile Include="Controllers\SyncObtenerController.cs" />
     <Compile Include="Controllers\SyncSeleccionController.cs" />
     <Compile Include="Controllers\SyncRegistroController.cs" />
-    <Compile Include="default.aspx.cs">
-      <DependentUpon>default.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="default.aspx.designer.cs">
-      <DependentUpon>default.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Engine\FuncionesApi.cs" />
     <Compile Include="Engine\FuncionesData.cs" />
     <Compile Include="Engine\FuncionesDb.cs" />
